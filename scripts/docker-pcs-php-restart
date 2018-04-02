@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+if supervisorctl status | grep -q "^apache\s"; then
+	supervisorctl restart apache
+fi
+
+if supervisorctl status | grep -q "^php\s"; then
+	supervisorctl restart php
+fi

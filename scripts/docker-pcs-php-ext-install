@@ -1,0 +1,68 @@
+#!/bin/sh
+set -e
+
+docker-php-source extract
+
+ext_dir=$(php -r 'echo ini_get("extension_dir");')
+
+usage() {
+	echo "usage: $0 [options] module-name [module-name ...]"
+	echo "   ie: $0 gd mysqli"
+}
+
+opts="$(getopt -o 'h?' --long 'help' -- "$@" || { usage >&2 && false; })"
+eval set -- "$opts"
+
+while true; do
+	flag="$1"
+	shift
+	case "$flag" in
+		--help|-h|'-?') usage && exit 0 ;;
+		--) break ;;
+		*)
+			{
+				echo "error: unknown flag: $flag"
+				usage
+			} >&2
+			exit 1
+			;;
+	esac
+done
+
+localExts=
+peclExts=
+
+for ext; do
+	if [ -z "$ext" ]; then
+		continue
+	fi
+	if [ -d "/usr/src/php/ext/$ext" ]; then
+		localExts="$localExts $ext"
+	else
+		peclExts="$peclExts $ext"
+	fi
+done
+
+if ! [ -z "$localExts" ]; then
+	docker-php-ext-install $localExts
+
+	for ext in "$localExts"; do
+		docker-php-ext-enable --ini-name "$ext.ini" $ext
+	done
+fi
+
+if ! [ -z "$peclExts" ]; then
+	for ext in "$peclExts"; do
+		extName=$(pecl remote-info $ext | grep Package | awk '{print $NF}')
+
+		pecl install $ext
+
+		if [ -f "${ext_dir}/${extName}.so" ]; then
+			docker-php-ext-enable --ini-name "$extName.ini" $extName
+		fi
+	done
+fi
+
+if [ -e /usr/src/php/.docker-delete-me ]; then
+	docker-php-source delete
+fi

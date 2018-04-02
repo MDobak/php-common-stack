@@ -1,0 +1,69 @@
+#!/bin/sh
+set -e
+
+ext_dir=$(php -r 'echo ini_get("extension_dir");')
+
+usage() {
+	echo "usage: $0 [options] extension config-line [config-line ...]"
+	echo "   ie: $0 --restart xdebug xdebug.remote_enable=1 xdebug.remote_host=docker.for.mac.localhost"
+	echo "	   $0 --ini-name dev-xdebug.ini xdebug xdebug.remote_enable=1"
+	echo "	   $0 --rm xdebug.remote_enable --rm xdebug.remote_host"
+}
+
+opts="$(getopt -o 'h?r:' --long 'help,rm:,ini-name:,restart' -- "$@" || { usage >&2 && false; })"
+eval set -- "$opts"
+
+iniName=
+remove=
+restart=
+while true; do
+	flag="$1"
+	shift
+	case "$flag" in
+		--help|-h|'-?') usage && exit 0 ;;
+		--rm|-r) remove="$remove $1" && shift ;;
+		--ini-name) iniName="$1" && shift ;;
+		--restart) restart=1 ;;
+		--) break ;;
+		*)
+			{
+				echo "error: unknown flag: $flag"
+				usage
+			} >&2
+			exit 1
+			;;
+	esac
+done
+
+ext=$1
+shift
+
+if [ -z ${iniName} ]; then
+	iniPath=$(egrep -li -d skip --include=*.ini "^(zend_)?extension=.+/${ext}\.so$" /usr/local/etc/php/conf.d/*) || true
+else
+	iniPath="/usr/local/etc/php/conf.d/${iniName}"
+fi
+
+if [ -z "${iniPath}" ]; then
+	echo "Unable to find a config file for ${ext}. You need to create a file or install an extension."
+	exit 1
+fi
+
+for configLine; do
+	config=${configLine%%"="*}
+	value=${configLine#*"="}
+
+	if egrep -liq "^$config=" ${iniPath}; then
+		sed -i -E "s/^$config=.+$/$config=$value/" ${iniPath}
+	else
+		echo "$config=$value" >> ${iniPath}
+	fi
+done
+
+for config in $remove; do
+	sed -i -E "/^$config=.+$/d" ${iniPath}
+done
+
+if ! [ -z "$restart" ]; then
+	docker-pcs-php-restart
+fi

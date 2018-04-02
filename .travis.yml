@@ -1,0 +1,17 @@
+sudo: required
+language: python
+services:
+  - docker
+before_install:
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+  - git config --global user.email "mdobak@gmail.com"
+  - git config --global user.name "Michał Dobaczewski"
+script:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then python update.py -a update-images -t 2400; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then python update.py -a self-update; fi
+env:
+  global:
+    # To those who think that sharing publicly these "secret" values is insecure: https://docs.travis-ci.com/user/environment-variables/#Defining-encrypted-variables-in-.travis.yml
+    - secure: dznBQwi/C+Eael8w+TSvBfwiwoBtu6+TRLw0NutrESAAApJRR+uGTS6WBA+zP9yGqpATK1ycr2T/qllX3pciYUFaw0UX31G8EgtSLDGwYfxhn6FKpe7PBPbVItaeQPRXVuJyYozfJkQpcHYzOvsLKGYu68e6MRQ+++Y7WXEf1+jsIztmMbTm/l/p4xJzpHdeiwHDf7UmPzOZ3PaUbNxTPuoCJqsvjqnN0F5i7YJr+12Ri6Pvdobg8oRmNVvCmrmNJMsw+A1sQ9PLVDBlOlirISFwJL/MmjaGbxxQV63iqAUxBd6Jnd6Hjib/3WlpB2slyGNQPV1/ie78TB7KutKUQ3/yJznydAYlXloLB/N2/b8BE13VNW9R6Nr0D++G0SgKxrJdmwfZIZtdNFyKCpXUrigfMpTr72yVAqNnYvZ5M2STZO5oFY2oghEHyZijBnzZ+yil+bi4Dgvkii4+iDDQKdL/OXOQ1x9S4hwx+jK/5tpMlnIgb9ekuq17Jnp8liyM1lD7V3lRPu+hrnXk4IDtlsalPilIltcxuRINtK594LvnXWlwb6UjOBytvWO1VbSz0mEzH+Zxgr5cuHy1qWWCJjx7J/neXsgQEdIR9leGrIhhSaQnk6YfSZke9/cpJDbVl0ZbN4jD/HqM5y2tB8N3K4McBcZICbjCLt2yLcPDKBk=
+    - secure: sOXIaNHYYF7eLNeMhvMgkY5IFnCoG3C2/pwBCNedQIYIL27jHN+BaXEsGhpIwtadhjnn2csvMbJskpVbNk0cUWFyyG3cpMbaeBx+C1t/0iseiegWtGgKXGlykcIu16+MrilSrLEwpnPSC7dq+hWzCnj8T6P1h+VlTYw7Fhj5Ey1PW2wyOyommz4B178Whn5kDtIqMdQCNVso46D+0nDUmvRQ+Ft9Uxj/xFhzPToZAOHLxLxJ1vXIu7DMAZkxRL+UjxzAullJmkz6S8yLcoo964b68NVT3Cq53GP/M0JKKyouJBl1HUx/vQn7jQUQb7rkvAL2vV90jJb6TiOuBMKwUnMr/Y3NB+8GPcLzHjqu8vJL4E3Oix+T/FeTnSYJc1/NVq7dLR7vu4HSzeK1TK8F31IqXnMOcDxi7A7Ewblu67CJ4gPHPr83s53VP4aE5aDKWjkBKkfhdm7WAe/zf8vUPXH+JpveZXGoeQ1yd8fzlICMe8cFw10RWLOQyf9zu8/0JjfPk87u7s6a/HPX7PVOOHKeKtXBBCa7XOe9tdbbA2D2DOS7jaY5BQ0ymKtn20b1fZItWViISTzvf006Z/+v1/iZODamIzImMXbmIsphdhOu8JHxejfagFxkaaGMrdBVjiCA3nBL2qdJFQ9s6YzdXHwCLlAhMDg9HRmg7I9Tb4E=
+    - secure: ln4H3wyBC9zZoBKDi5Savr8vTbzogWDY36EVg7ppjYZueUxlRtnedh0vLGgQj9hbPlb7dBCxUkzyoDR/EsoZ17CldMdVx7RZHe3xg7yvd1z+MVvmDp7U4SlwL9KXz+bHPpl3R2G7NjpZUnl7nKj4FAQpucALlHix9uRNnb3tOGKHsUkcT6+et5ef+M5pyt0U67BeBzRrsFx2mSu44JODc8z9C44fF1PeMXeVVgagHbt4yrNJRzF7xDJ/xkUQaknlz6EzUotXCygQn6e15pLY2zQiYAoRPq3i9IS/5fHizqJo4RU6BT0lGqkVJWZo5UlHy1a3jv/MpuiQ5YpKo8jwZmhrFl8HkvTRZfpZic5tiXoCzSkG3O/lfWiUmWaqoHC1RFOAMHycAdOqR++MHs2jlWpjeHdzk8GZjo/zVRopD6JKKG6xBMG+GvdE4i1I71WOge0lQlLAl13rqSqGiO+I3t9AMOz9cw+POl9KfMJ74GgUPoLhWVJzERqqUIQZ33CARCk0S7NcD2g5pqJHQWaxWZRFLlzdcv+ZR01Xazrsh9Eoxhve7ynpMGkcfdl7kd+s90sf0P67T6EEbSkkKUotL4/B+l6HyOFGiQmK7Ktjrl0eCiAeNrmnE5rKdpchHYvzHXAjLFBeqpN08HR0zScVNfHNr2RQ+Jj0FbzsWNubYkc=

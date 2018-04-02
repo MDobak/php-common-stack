@@ -1,0 +1,51 @@
+#!/bin/sh
+set -e
+
+usage() {
+	echo "usage: $0 [options]"
+	echo "   ie: $0 mysqli"
+	echo "   ie: $0 --restart mysqli"
+}
+
+opts="$(getopt -o 'h?' --long 'help,restart' -- "$@" || { usage >&2 && false; })"
+eval set -- "$opts"
+
+restart=
+while true; do
+	flag="$1"
+	shift
+	case "$flag" in
+		--help|-h|'-?') usage && exit 0 ;;
+		--restart) restart=1 ;;
+		--) break ;;
+		*)
+			{
+				echo "error: unknown flag: $flag"
+				usage
+			} >&2
+			exit 1
+			;;
+	esac
+done
+ext=$1
+
+mkdir -p /usr/local/etc/php/conf.d/disabled/
+
+iniPath=$(egrep -li -d skip --include=*.ini "^(zend_)?extension=.+/${ext}\.so$" /usr/local/etc/php/conf.d/disabled/*) || true
+
+if [ -z "${iniPath}" ]; then
+	echo "Unable to find a config file for ${ext} or this extension is already enabled."
+	exit 1
+fi
+
+if ! [ 1 -eq $(cat ${iniPath} | egrep -i "^(zend_)?extension=" | wc -l) 2> /dev/null ]; then
+	echo "There are many extensions configured in file ${iniPath}. You need to use separate config files per extension."
+	exit 2
+fi
+
+iniFileName=$(basename $iniPath)
+mv ${iniPath} /usr/local/etc/php/conf.d/${iniFileName}
+
+if ! [ -z "$restart" ]; then
+	docker-pcs-php-restart
+fi
