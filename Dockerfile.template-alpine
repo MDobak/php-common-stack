@@ -31,5 +31,4 @@ RUN apk add --no-cache --virtual .build-deps \
 # Cleanup
     && rm -rf /var/lib/apt/lists/*
 
-HEALTHCHECK --start-period=15s --interval=15s --timeout=15s CMD /etc/init.d/supervisor status || exit 1
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
