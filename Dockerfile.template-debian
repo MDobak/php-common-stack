@@ -33,5 +33,4 @@ RUN DEBIAN_FRONTEND=noninteractive \
 # Cleanup
     && rm -rf /var/lib/apt/lists/*
 
-HEALTHCHECK --start-period=15s --interval=15s --timeout=15s CMD /etc/init.d/supervisor status || exit 1
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
