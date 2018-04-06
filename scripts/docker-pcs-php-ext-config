@@ -39,7 +39,7 @@ ext=$1
 shift
 
 if [ -z ${iniName} ]; then
-	iniPath=$(egrep -li -d skip --include=*.ini "^(zend_)?extension=.+/${ext}\.so$" /usr/local/etc/php/conf.d/*) || true
+	iniPath=$(egrep -li -d skip --include=*.ini "^(zend_)?extension=(.+/)?${ext}\.so$" /usr/local/etc/php/conf.d/*) || true
 else
 	iniPath="/usr/local/etc/php/conf.d/${iniName}"
 fi
