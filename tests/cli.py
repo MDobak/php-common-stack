@@ -18,14 +18,7 @@ def fail(message):
 clean()
 os.system("docker run -d -p 80:80 --name test " + image + "");
 
-limit = 0
-while commands.getstatusoutput("docker inspect --format '{{json .State.Health.Status }}' test")[1] != '"healthy"':
-    limit += 1
-    time.sleep(1)
-    if limit >= 60:
-        fail("Healtcheck failed")
-
-# Check if supervisor is running
+# Check if php is working
 result = commands.getstatusoutput("docker exec test php -r 'echo \"Hello World!\";'")
 if result[1] != "Hello World!":
     fail("PHP CLI do not work")
