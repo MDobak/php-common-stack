@@ -101,7 +101,7 @@ supported_tags = [
     {
         "template": "Dockerfile.template-alpine",
         "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine$',
-        "branch": "fpm",
+        "branch": "fpm-alpine",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
         "test_script": "python tests/fpm.py"
