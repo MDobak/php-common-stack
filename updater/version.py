@@ -6,11 +6,14 @@ class Version:
         self.version = version
 
         parsed_version = re.match(r'^(?P<major>[0-9]+)(\.(?P<minor>[0-9]+)(\.(?P<patch>[0-9]+))?)?((?P<label>[A-Za-z]+)(?P<label_version>[0-9]+)?)?(-(?P<branch>.+))?$', version)
-        self.version_parts = parsed_version.groupdict() if None != parsed_version else []
+        self.version_parts = parsed_version.groupdict() if None != parsed_version else {}
 
         for key, value in self.version_parts.items():
             if value is None:
-                self.version_parts[key] = "99999999"
+                self.version_parts[key] = ""
+
+    def is_valid(self):
+        return {} != self.version_parts
 
     def to_string(self):
         return self.version
@@ -42,7 +45,7 @@ class Version:
                 version_parts[group] = "3"
             elif group == "label" and value == "edge":
                 version_parts[group] = "4"
-            elif None == value:
+            elif "" == value:
                 version_parts[group] = "99999999"
 
         return (

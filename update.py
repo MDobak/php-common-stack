@@ -180,7 +180,7 @@ def update_images(supported_tags, time_limit):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Docker images manager")
-    parser.add_argument("-a", "--action", required=True, choices=["update-dockerfiles", "self-update", "update-images"])
+    parser.add_argument("-a", "--action", required=True, choices=["update-dockerfiles", "self-update", "update-images", "list-tags"])
     parser.add_argument("-t", "--time-limit", required=False, default=0)
     parser.add_argument("-f", "--force", required=False, action="store_true")
 
@@ -188,7 +188,6 @@ if __name__ == "__main__":
 
     parent_repo_tags = docker.Repository(parent_repo).get_tags()
     current_repo_tags = [] if args.force else docker.Repository(current_repo).get_tags()
-
     docker_image_builder = docker.ImageBuilder(parent_repo_tags, current_repo_tags)
 
     for tag in blacklisted_tags:
@@ -209,3 +208,10 @@ if __name__ == "__main__":
     elif "update-images" == args.action:
         update_images(supported_tags, int(args.time_limit))
         update_dockerfiles(supported_tags)
+
+    elif "list-tags" == args.action:
+        tag_resolver = docker.TagResolver(parent_repo_tags)
+        for supported_tag in supported_tags:
+            possible_tags = tag_resolver.get_tags_for_branch(supported_tag["filter_regexp"], supported_tag["branch"])
+            for tag, possible_tags in possible_tags.items():
+                print tag + ": " + ",".join(possible_tags)
