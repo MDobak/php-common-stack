@@ -31,7 +31,7 @@ ext=$1
 
 mkdir -p /usr/local/etc/php/conf.d/disabled/
 
-iniPath=$(egrep -li -d skip --include=*.ini "^(zend_)?extension=(.+/)?${ext}\.so$" /usr/local/etc/php/conf.d/*) || true
+iniPath=$(egrep -li "^(zend_)?extension=(.+/)?${ext}\.so$" /usr/local/etc/php/conf.d/*.ini) || true
 
 if [ -z "${iniPath}" ]; then
 	echo "Unable to find a config file for ${ext} or this extension is already disabled."
