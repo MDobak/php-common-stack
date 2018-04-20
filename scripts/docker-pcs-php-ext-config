@@ -53,8 +53,9 @@ for configLine; do
 	config=${configLine%%"="*}
 	value=${configLine#*"="}
 
-	if egrep -liq "^$config=" ${iniPath}; then
-		sed -i -E "s/^$config=.+$/$config=$value/" ${iniPath}
+	if egrep -liq "^${config} *=" ${iniPath}; then
+		configEscaped=$(echo "$config" | sed 's/[^^]/[&]/g; s/\^/\\^/g')
+		sed -i -E "s/^${configEscaped} *=.*$/${config}=${value}/" ${iniPath}
 	else
 		echo "$config=$value" >> ${iniPath}
 	fi

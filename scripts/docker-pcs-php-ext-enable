@@ -31,14 +31,14 @@ ext=$1
 
 mkdir -p /usr/local/etc/php/conf.d/disabled/
 
-iniPath=$(egrep -li "^(zend_)?extension=(.+/)?${ext}\.so$" /usr/local/etc/php/conf.d/disabled/*.ini) || true
+iniPath=$(egrep -li "^(zend_)?extension *= *(.+/)?${ext}\.so$" /usr/local/etc/php/conf.d/disabled/*.ini) || true
 
 if [ -z "${iniPath}" ]; then
 	echo "Unable to find a config file for ${ext} or this extension is already enabled."
 	exit 1
 fi
 
-if ! [ 1 -eq $(cat ${iniPath} | egrep -i "^(zend_)?extension=" | wc -l) 2> /dev/null ]; then
+if ! [ 1 -eq $(cat ${iniPath} | egrep -i "^(zend_)?extension *= *" | wc -l) 2> /dev/null ]; then
 	echo "There are many extensions configured in file ${iniPath}. You need to use separate config files per extension."
 	exit 2
 fi
