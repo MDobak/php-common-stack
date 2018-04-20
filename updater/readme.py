@@ -16,12 +16,12 @@ class Updater:
         readme_file_content = re.sub(
             re.escape(begin_line) + "(.*)" + re.escape(end_line),
             begin_line + "\n\n" + tags_list + "\n" + end_line,
-            readme_file_content,
+            readme_file_content.decode('utf-8'),
             flags=re.S
         )
 
         with open("./README.md", "w") as readme_file:
-            readme_file.write(readme_file_content)
+            readme_file.write(readme_file_content.encode('utf-8'))
 
     def __build_tags_list(self):
         content = ""
