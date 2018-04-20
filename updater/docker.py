@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os, re, urllib, json, hashlib, tag
+import os, re, urllib, json, hashlib
 from version import Version
 from utils import CLIColor
 
