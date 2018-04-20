@@ -24,9 +24,18 @@ if result[1] != "Hello World!":
     fail("PHP CLI do not work")
 
 # Check if Apache is working
-os.system("docker exec test bash -c 'echo \"<?php echo \\\"Hello World!\\\"; \" > /var/www/html/index.php'");
-result = commands.getstatusoutput("curl -sS 127.0.0.1:80")
-if result[1].strip() != "Hello World!":
-    fail("Apache do not work")
+time_limit=10
+while True:
+    os.system("docker exec test bash -c 'echo \"<?php echo \\\"Hello World!\\\"; \" > /var/www/html/index.php'");
+    result = commands.getstatusoutput("curl -sS 127.0.0.1:80")
+
+    if result[1].strip() != "Hello World!":
+        break
+
+    if time_limit == 0:
+        fail("Apache do not work")
+
+    time_limit -= 1
+    time.sleep(1)
 
 success()
