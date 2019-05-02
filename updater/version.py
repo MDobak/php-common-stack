@@ -8,7 +8,7 @@ class Version:
         parsed_version = re.match(r'^(?P<major>[0-9]+)(\.(?P<minor>[0-9]+)(\.(?P<patch>[0-9]+))?)?((?P<label>[A-Za-z]+)(?P<label_version>[0-9]+)?)?(-(?P<branch>.+))?$', version)
         self.version_parts = parsed_version.groupdict() if None != parsed_version else {}
 
-        for key, value in self.version_parts.items():
+        for key, value in list(self.version_parts.items()):
             if value is None:
                 self.version_parts[key] = ""
 
@@ -34,7 +34,7 @@ class Version:
             return None
 
         version_parts = self.version_parts
-        for group, value in version_parts.items():
+        for group, value in list(version_parts.items()):
             if group == "label" and value == "alpha":
                 version_parts[group] = "0"
             elif group == "label" and value == "beta":
@@ -82,9 +82,9 @@ class Version:
 
     @staticmethod
     def compare(version1, version2):
-        if isinstance(version1, basestring):
+        if isinstance(version1, str):
             version1 = Version(version1)
-        if isinstance(version2, basestring):
+        if isinstance(version2, str):
             version2 = Version(version2)
 
         v1 = version1.to_tuple()

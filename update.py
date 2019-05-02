@@ -274,4 +274,4 @@ if __name__ == "__main__":
         for supported_tag in supported_tags:
             possible_tags = tag_resolver.get_tags_for_branch(supported_tag["filter_regexp"], supported_tag["branch"])
             for tag, possible_tags in possible_tags.items():
-                print tag + ": " + ",".join(possible_tags)
+                print(tag + ": " + ",".join(possible_tags))
