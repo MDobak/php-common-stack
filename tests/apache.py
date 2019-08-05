@@ -3,7 +3,7 @@ import os
 import sys
 import time
 
-import commands
+import subprocess
 
 image = sys.argv[1]
 
@@ -27,7 +27,7 @@ clean()
 os.system("docker run -d -p 80:80 --name test " + image + "");
 
 # Check if php is working
-result = commands.getstatusoutput("docker exec test php -r 'echo \"Hello World!\";'")
+result = subprocess.getstatusoutput("docker exec test php -r 'echo \"Hello World!\";'")
 if result[1] != "Hello World!":
     fail("PHP CLI do not work")
 
@@ -35,7 +35,7 @@ if result[1] != "Hello World!":
 time_limit = 10
 while True:
     os.system("docker exec test bash -c 'echo \"<?php echo \\\"Hello World!\\\"; \" > /var/www/html/index.php'");
-    result = commands.getstatusoutput("curl -sS 127.0.0.1:80")
+    result = subprocess.getstatusoutput("curl -sS 127.0.0.1:80")
 
     if result[1].strip() != "Hello World!":
         break
