@@ -1,12 +1,13 @@
 #!/usr/bin/python
 import re
 
+
 class Version:
     def __init__(self, version):
         self.version = version
 
         parsed_version = re.match(r'^(?P<major>[0-9]+)(\.(?P<minor>[0-9]+)(\.(?P<patch>[0-9]+))?)?((?P<label>[A-Za-z]+)(?P<label_version>[0-9]+)?)?(-(?P<branch>.+))?$', version)
-        self.version_parts = parsed_version.groupdict() if None != parsed_version else {}
+        self.version_parts = parsed_version.groupdict() if parsed_version is not None else {}
 
         for key, value in list(self.version_parts.items()):
             if value is None:
@@ -19,7 +20,7 @@ class Version:
         return self.version
 
     def to_short_version_string(self, include_branch=True):
-        if include_branch and None != self.version_parts["branch"]:
+        if include_branch and self.version_parts["branch"] is not None:
             return self.version_parts["major"] + "." + self.version_parts["minor"] + "-" + self.version_parts["branch"]
         return self.version_parts["major"] + "." + self.version_parts["minor"]
 
@@ -30,7 +31,7 @@ class Version:
         return self.version_parts
 
     def to_tuple(self):
-        if None == self.version_parts:
+        if self.version_parts is None:
             return None
 
         version_parts = self.version_parts
@@ -101,13 +102,13 @@ class Version:
     def highest(versions, from_version=None, to_version=None, stable_only=None, unstable_only=None):
         if 0 == len(versions):
             return None
-        if None == from_version:
+        if from_version is None:
             from_version = "0.0.0alpha0"
-        if None == to_version:
+        if to_version is None:
             to_version = "99999999.99999999.99999999edge99999999"
-        if None == stable_only:
+        if stable_only is None:
             stable_only = False
-        if None == unstable_only:
+        if unstable_only is None:
             unstable_only = False
 
         from_version = Version(from_version)
@@ -129,13 +130,13 @@ class Version:
             if unstable_only and version.is_stable():
                 continue
 
-            if None == highest:
+            if highest is None:
                 highest = version
 
             if version > highest:
                 highest = version
 
-        if highest == None:
+        if highest is None:
             return None
 
         return highest.to_string()
