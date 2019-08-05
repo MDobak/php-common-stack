@@ -96,6 +96,37 @@ supported_tags = [
         "variables": {'supervisor_path': "cli"},
         "test_script": "tests/cli.py"
     },
+    
+    # FPM Buster
+    {
+        "template": "Dockerfile.template-debian",
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-buster$',
+        "branch": "fpm-buster",
+        "output": "Dockerfile.fpm-buster",
+        "variables":
+            {'supervisor_path': "fpm"},
+        "test_script": "tests/fpm.py"
+    },
+
+    # Apache Buster
+    {
+        "template": "Dockerfile.template-debian",
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-buster$',
+        "branch": "apache-buster",
+        "output": "Dockerfile.apache-buster",
+        "variables": {'supervisor_path': "apache"},
+        "test_script": "tests/apache.py"
+    },
+
+    # CLI Buster
+    {
+        "template": "Dockerfile.template-debian",
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-buster$',
+        "branch": "cli-buster",
+        "output": "Dockerfile.cli-buster",
+        "variables": {'supervisor_path': "cli"},
+        "test_script": "tests/cli.py"
+    },
 
     # FPM Alpine
     {
