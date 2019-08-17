@@ -96,7 +96,7 @@ supported_tags = [
         "variables": {'supervisor_path': "cli"},
         "test_script": "tests/cli.py"
     },
-    
+
     # FPM Buster
     {
         "template": "Dockerfile.template-debian",
@@ -135,7 +135,7 @@ supported_tags = [
         "branch": "fpm-alpine",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
-        "test_script": "python tests/fpm.py"
+        "test_script": "tests/fpm.py"
     },
 
     # CLI Alpine
@@ -145,7 +145,7 @@ supported_tags = [
         "branch": "cli-alpine",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
-        "test_script": "python tests/cli.py"
+        "test_script": "tests/cli.py"
     },
 
     # FPM Alpine 3.6
@@ -155,7 +155,7 @@ supported_tags = [
         "branch": "fpm-alpine3.6",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
-        "test_script": "python tests/fpm.py"
+        "test_script": "tests/fpm.py"
     },
 
     # CLI Alpine 3.6
@@ -165,7 +165,7 @@ supported_tags = [
         "branch": "cli-alpine3.6",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
-        "test_script": "python tests/cli.py"
+        "test_script": "tests/cli.py"
     },
 
     # FPM Alpine 3.7
@@ -175,7 +175,7 @@ supported_tags = [
         "branch": "fpm-alpine3.7",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
-        "test_script": "python tests/fpm.py"
+        "test_script": "tests/fpm.py"
     },
 
     # CLI Alpine 3.7
@@ -185,7 +185,7 @@ supported_tags = [
         "branch": "cli-alpine3.7",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
-        "test_script": "python tests/cli.py"
+        "test_script": "tests/cli.py"
     },
 
     # FPM Alpine 3.8
@@ -195,7 +195,7 @@ supported_tags = [
         "branch": "fpm-alpine3.8",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
-        "test_script": "python tests/fpm.py"
+        "test_script": "tests/fpm.py"
     },
 
     # CLI Alpine 3.8
@@ -205,7 +205,7 @@ supported_tags = [
         "branch": "cli-alpine3.8",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
-        "test_script": "python tests/cli.py"
+        "test_script": "tests/cli.py"
     },
 
     # FPM Alpine 3.9
@@ -215,7 +215,7 @@ supported_tags = [
         "branch": "fpm-alpine3.9",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
-        "test_script": "python tests/fpm.py"
+        "test_script": "tests/fpm.py"
     },
 
     # CLI Alpine 3.9
@@ -225,7 +225,7 @@ supported_tags = [
         "branch": "cli-alpine3.9",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
-        "test_script": "python tests/cli.py"
+        "test_script": "tests/cli.py"
     },
 
     # FPM Alpine 3.10
@@ -235,7 +235,7 @@ supported_tags = [
         "branch": "fpm-alpine3.10",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
-        "test_script": "python tests/fpm.py"
+        "test_script": "tests/fpm.py"
     },
 
     # CLI Alpine 3.10
@@ -245,7 +245,7 @@ supported_tags = [
         "branch": "cli-alpine3.10",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
-        "test_script": "python tests/cli.py"
+        "test_script": "tests/cli.py"
     },
 ]
 

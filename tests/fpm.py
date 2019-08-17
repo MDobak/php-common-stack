@@ -1,8 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
-import sys
-
 import subprocess
+import sys
 
 image = sys.argv[1]
 
