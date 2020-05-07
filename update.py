@@ -247,6 +247,26 @@ supported_tags = [
         "variables": {'supervisor_path': "cli-alpine"},
         "test_script": "tests/cli.py"
     },
+    
+    # FPM Alpine 3.11
+    {
+        "template": "Dockerfile.template-alpine",
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.11$',
+        "branch": "fpm-alpine3.11",
+        "output": "Dockerfile.fpm-alpine",
+        "variables": {'supervisor_path': "fpm-alpine"},
+        "test_script": "tests/fpm.py"
+    },
+
+    # CLI Alpine 3.11
+    {
+        "template": "Dockerfile.template-alpine",
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.11$',
+        "branch": "cli-alpine3.11",
+        "output": "Dockerfile.cli-alpine",
+        "variables": {'supervisor_path': "cli-alpine"},
+        "test_script": "tests/cli.py"
+    },
 ]
 
 blacklisted_tags = [
