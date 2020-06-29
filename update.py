@@ -9,7 +9,7 @@ supported_tags = [
     # FPM
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm$',
         "branch": "fpm",
         "output": "Dockerfile.fpm",
         "variables": {'supervisor_path': "fpm"},
@@ -19,7 +19,7 @@ supported_tags = [
     # Apache
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache$',
         "branch": "apache",
         "output": "Dockerfile.apache",
         "variables": {'supervisor_path': "apache"},
@@ -29,7 +29,7 @@ supported_tags = [
     # CLI
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli$',
         "branch": "cli",
         "output": "Dockerfile.cli",
         "variables": {'supervisor_path': "cli"},
@@ -39,7 +39,7 @@ supported_tags = [
     # FPM Jessie
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-jessie$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-jessie$',
         "branch": "fpm-jessie",
         "output": "Dockerfile.fpm-jessie",
         "variables": {'supervisor_path': "fpm"},
@@ -49,7 +49,7 @@ supported_tags = [
     # Apache Jessie
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-jessie$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-jessie$',
         "branch": "apache-jessie",
         "output": "Dockerfile.apache-jessie",
         "variables": {'supervisor_path': "apache"},
@@ -59,7 +59,7 @@ supported_tags = [
     # CLI Jessie
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-jessie$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-jessie$',
         "branch": "cli-jessie",
         "output": "Dockerfile.cli-jessie",
         "variables": {'supervisor_path': "cli"},
@@ -69,7 +69,7 @@ supported_tags = [
     # FPM Stretch
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-stretch$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-stretch$',
         "branch": "fpm-stretch",
         "output": "Dockerfile.fpm-stretch",
         "variables":
@@ -80,7 +80,7 @@ supported_tags = [
     # Apache Stretch
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-stretch$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-stretch$',
         "branch": "apache-stretch",
         "output": "Dockerfile.apache-stretch",
         "variables": {'supervisor_path': "apache"},
@@ -90,7 +90,7 @@ supported_tags = [
     # CLI Stretch
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-stretch$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-stretch$',
         "branch": "cli-stretch",
         "output": "Dockerfile.cli-stretch",
         "variables": {'supervisor_path': "cli"},
@@ -100,7 +100,7 @@ supported_tags = [
     # FPM Buster
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-buster$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-buster$',
         "branch": "fpm-buster",
         "output": "Dockerfile.fpm-buster",
         "variables":
@@ -111,7 +111,7 @@ supported_tags = [
     # Apache Buster
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-buster$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-apache-buster$',
         "branch": "apache-buster",
         "output": "Dockerfile.apache-buster",
         "variables": {'supervisor_path': "apache"},
@@ -121,7 +121,7 @@ supported_tags = [
     # CLI Buster
     {
         "template": "Dockerfile.template-debian",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-buster$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-buster$',
         "branch": "cli-buster",
         "output": "Dockerfile.cli-buster",
         "variables": {'supervisor_path': "cli"},
@@ -131,7 +131,7 @@ supported_tags = [
     # FPM Alpine
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine$',
         "branch": "fpm-alpine",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -141,7 +141,7 @@ supported_tags = [
     # CLI Alpine
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine$',
         "branch": "cli-alpine",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
@@ -151,7 +151,7 @@ supported_tags = [
     # FPM Alpine 3.6
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.6$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.6$',
         "branch": "fpm-alpine3.6",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -161,7 +161,7 @@ supported_tags = [
     # CLI Alpine 3.6
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.6$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.6$',
         "branch": "cli-alpine3.6",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
@@ -171,7 +171,7 @@ supported_tags = [
     # FPM Alpine 3.7
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.7$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.7$',
         "branch": "fpm-alpine3.7",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -181,7 +181,7 @@ supported_tags = [
     # CLI Alpine 3.7
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.7$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.7$',
         "branch": "cli-alpine3.7",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
@@ -191,7 +191,7 @@ supported_tags = [
     # FPM Alpine 3.8
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.8$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.8$',
         "branch": "fpm-alpine3.8",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -201,7 +201,7 @@ supported_tags = [
     # CLI Alpine 3.8
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.8$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.8$',
         "branch": "cli-alpine3.8",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
@@ -211,7 +211,7 @@ supported_tags = [
     # FPM Alpine 3.9
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.9$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.9$',
         "branch": "fpm-alpine3.9",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -221,7 +221,7 @@ supported_tags = [
     # CLI Alpine 3.9
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.9$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.9$',
         "branch": "cli-alpine3.9",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
@@ -231,7 +231,7 @@ supported_tags = [
     # FPM Alpine 3.10
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.10$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.10$',
         "branch": "fpm-alpine3.10",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -241,7 +241,7 @@ supported_tags = [
     # CLI Alpine 3.10
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.10$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.10$',
         "branch": "cli-alpine3.10",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
@@ -251,7 +251,7 @@ supported_tags = [
     # FPM Alpine 3.11
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.11$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-fpm-alpine3.11$',
         "branch": "fpm-alpine3.11",
         "output": "Dockerfile.fpm-alpine",
         "variables": {'supervisor_path': "fpm-alpine"},
@@ -261,7 +261,7 @@ supported_tags = [
     # CLI Alpine 3.11
     {
         "template": "Dockerfile.template-alpine",
-        "filter_regexp": r'^(5\.4|5\.5|5\.6|7\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.11$',
+        "filter_regexp": r'^(5\.4|5\.5|5\.6|(7|8)\.[0-9]+)\.([0-9]+)((alpha|beta|RC)([0-9]*))?-cli-alpine3.11$',
         "branch": "cli-alpine3.11",
         "output": "Dockerfile.cli-alpine",
         "variables": {'supervisor_path': "cli-alpine"},
